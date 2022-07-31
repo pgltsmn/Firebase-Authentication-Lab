@@ -55,13 +55,18 @@ def signup():
 
 @app.route('/add_tweet', methods=['GET', 'POST'])
 def add_tweet():
+    # if method = "POST":
+    #     ogin_session['user'] = None
+    #     auth.current_user = None
+    #     return redirect(url_for('home.html'))
     return render_template("add_tweet.html")
 
-@app.route('/signout')
-def signout():
-    login_session['user'] = None
-    auth.current_user = None
-    return redirect(url_for('home.html'))
+# @app.route('/signout')
+# def signout():
+#     login_session['user'] = None
+#     auth.current_user = None
+#     return redirect(url_for('home.html'))
+# return render_template('add_tweet.html')
 
 
 
