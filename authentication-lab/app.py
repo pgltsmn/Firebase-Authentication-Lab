@@ -65,18 +65,19 @@ def signup():
 
 @app.route('/add_tweet', methods=['GET', 'POST'])
 def add_tweet():
-    # if method = "POST":
-    #     ogin_session['user'] = None
-    #     auth.current_user = None
-    #     return redirect(url_for('home.html'))
+    if request.method == "POST":
+        try:
+            tweet = {'title': request.form['title'], 'tweet_text': request.form['tweet']}
+            db.child('Tweets').push(tweet)
+            return redirect(url_for('add_tweet'))
+        except:
+            print ('error')
     return render_template("add_tweet.html")
 
-# @app.route('/signout')
-# def signout():
-#     login_session['user'] = None
-#     auth.current_user = None
-#     return redirect(url_for('home.html'))
-#     return render_template('add_tweet.html')
+@app.route('/wall')
+def wall():
+    tweets = db.child('Tweets').get().val()
+    return render_template('wall.html', tweets=tweets)
 
 
 
